@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+    const investors = [
+    { first: "John", last: "Doe", year: 2019, pass: 2066 },
+    { first: "Jane", last: "Smith", year: 2020, pass: 2055 },
+    { first: "Mike", last: "Johnson", year: 2018, pass: 2078 },
+    { first: "Emily", last: "Davis", year: 2021, pass: 2087 },
+    { first: "Chris", last: "Brown", year: 2017, pass: 2057 },
+    { first: "Sara", last: "Taylor", year: 2020, pass: 2074 },
+    { first: "David", last: "Miller", year: 2016, pass: 2076 },
+    { first: "Anna", last: "Garcia", year: 2022, pass: 2074 },
+    { first: "James", last: "Martinez", year: 2021, pass: 2080 },
+    { first: "Laura", last: "Hernandez", year: 2019, pass: 2082 }
+    ];
+
+    const people = ['beck, smith', 'humster, powell', 'johnson, emily', 'taylor, chris', 'brown, david',
+    'miller, sarah', 'davis, james','garcia, anna', 'hernandez, laura', 'martinez, michael', 'lopez, william',
+    'gonzalez, elizabeth', 'wilson, amanda', 'moore, daniel', 'white, jessica', 'harris, mark',
+    'clark, olivia', 'young, benjamin', 'king, sophia', 'hall, andrew'
+    ];
+
+    // Array.prototype.filter()
+    // 1. filter the list of investers for those who were born in the 2020
+    const data = investors.filter(function(inventor) {
+        if(inventor.year >= 2019 && inventor.year < 2021){
+            return true;
+        }else{
+            return false;
+        }
+    })   
+    console.table(data)
+
+    // Array.prototype.map()
+    // 2. Gives us the array of the inventory first and last names
+    const names = investors.map(inventor => `${inventor.first} ${inventor.last}`);
+    console.log(names)
+
+    // Array.prototype.sort()
+    // 3. Sort inventors by birthdate oldest to youngest
+    const birthdate = investors.sort((a, b) => a.year > b.year ? 1 : -1);
+    console.table(birthdate)
+
+    // Array.prototype.reduce()
+    // 4. How many years did all the inventors live
+    const live = investors.reduce((total, inventor) => {
+        return total + (inventor.year - inventor.pass);
+    }, 0);
+
+    console.log(live)
+
+    //  5. sort inventors by years lived
+    const lived = investors.sort(function(a, b) {
+        const lastGuy = a.pass - b.year;
+        const nextGuy = a.pass - b.year;
+        return lastGuy > nextGuy ? -1 : 1;
+    })
+    console.table(lived)
+
+    // 6. create list of boulevards in paris that contain 'de' anywhere in the name
+    // http://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+    // const category = document.querySelector(".mw-category");
+    // const links =  Array.from(category.querySelectorAll('a'));
+    // const de = links.map(link => link.textContent).filter(streetName => streetName.includes('de'));
+
+    // 7. sort Exercise
+    // sort people alphabetically by last name
+    const alpha = people.sort((a, b) => {
+        const [aLast, aFirst] = a.split(', ');
+        const [bLast, bFirst] = b.split(', ');
+        return aLast > bLast ? 1 : -1;
+    });
+    console.log(alpha)
+
+    // 8. Reduce Exercise
+    // Sum up the instance of each of the
+    const storedData = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'truck'];
+    const trsnsp = storedData.reduce(function(obj, item) {
+        if(!obj[item]){
+            obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+    }, {});
+    console.log(trsnsp);
+
+    </script>
+</body> 
+</html>
