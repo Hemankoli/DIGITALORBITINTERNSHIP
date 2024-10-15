@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  background-color: antiquewhite;
+}
+
+.player {
+    max-width: 750px;
+    border: 5px solid rgba(0,0,0,0.2);
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+    margin: auto;
+    top: 100px;
+  }
+  
+  .player video {
+    width: 100%;
+  }
+  
+  .player__controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(211, 77, 77, 0.1);
+    padding: 10px;
+  }
+  
+  .player__button {
+    background: none;
+    border: 0;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .progress {
+    flex: 1;
+    margin-right: 10px;
+    position: relative;
+    height: 5px;
+    background: rgb(255, 110, 110);
+  }
+  
+
+  .progress__filled {
+    width: 0;
+    background: #BADA55;
+    height: 100%;
+    flex-basis: 0;
+  }
+  
+  .player__slider {
+    width: 100px;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
