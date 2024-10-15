@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="search-form">
+        <input type="text" class="search" placeholder="City or State">
+        <ul class="suggestions">
+          <li>Filter for a city</li>
+          <li>or a state</li>
+        </ul>
+    </form>
+
+    <style>
+        .search-form {
+            position: relative;
+            background-color: antiquewhite;
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .search {
+            height: 40px;
+            text-align: center;
+        }
+
+        .suggestions {
+            border: 1px solid #eee;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: white;
+            list-style: none;
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .suggestions li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .suggestions li:hover {
+            background: #f0f0f0;
+        }
+
+        .suggestions li strong {
+            color: #e74c3c;
+        }
+
+    </style>
+
+    <script src="script.js"></script>
+      
+</body>
+</html>
