@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="inbox">
+        <label>
+          <input type="checkbox">
+          Item 1
+        </label>
+        <label>
+          <input type="checkbox">
+          Item 2
+        </label>
+        <label>
+          <input type="checkbox">
+          Item 3
+        </label>
+        <label>
+          <input type="checkbox">
+          Item 4
+        </label>
+        <label>
+          <input type="checkbox">
+          Item 5
+        </label>
+      </div>
+      
+
+      <script>
+        const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+            let lastChecked;
+
+            function handleCheck(e) {
+            let inBetween = false;
+            
+            // Check if Shift key is held and the checkbox is being checked
+            if (e.shiftKey && this.checked) {
+                // Loop over every checkbox
+                checkboxes.forEach(checkbox => {
+                if (checkbox === this || checkbox === lastChecked) {
+                    inBetween = !inBetween;
+                }
+                
+                // If inBetween is true, check the checkbox
+                if (inBetween) {
+                    checkbox.checked = true;
+                }
+                });
+            }
+            
+            lastChecked = this;
+            }
+
+            // Add event listener to each checkbox
+            checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
+      </script>
+      
+</body>
+</html>
