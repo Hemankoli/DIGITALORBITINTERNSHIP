@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object and Arrays - Reference VS Copy</title>
+</head>
+<body>
+
+    <script>
+        // Start with Srting, Number and boolean
+
+        let a = 100;
+        let b = a; // Copying the value of 'a' into 'b'
+        console.log(a, b); // 100, 100
+
+        b = 200;
+        console.log(a, b); // 100, 200
+
+        // Array 
+        let arr1 = ['a', 'b', 'c'];
+        let arr2 = arr1; // Reference to the same array
+        console.log(arr1, arr2); // ['a', 'b', 'c'], ['a', 'b', 'c']
+
+        arr2.push('d');
+        console.log(arr1, arr2); // ['a', 'b', 'c', 'd'], ['a', 'b', 'c', 'd']
+
+        // Object
+        let obj1 = { name: 'Alice', age: 25 };
+        let obj2 = obj1; // Reference to the same object
+        console.log(obj1, obj2); // { name: 'Alice', age: 25 }, { name: 'Alice', age: 25 }
+
+        obj2.age = 30;
+
+        console.log(obj1, obj2); // { name: 'Alice', age: 30 }, { name: 'Alice', age: 30 }
+
+        // Deep Copy
+        let deep1 = { name: 'Alice', hobbies: ['reading', 'swimming'] };
+        let deep2 = JSON.parse(JSON.stringify(deep1)); // Deep copy
+
+        deep2.hobbies.push('cycling');
+        console.log(deep1, deep2); // { name: 'Alice', hobbies: ['reading', 'swimming'] }, { name: 'Alice', hobbies: ['reading', 'swimming', 'cycling'] }
+
+
+
+    </script>
+    
+</body>
+</html>
