@@ -65,9 +65,11 @@
         const arrow = document.querySelector('.arrow');
         const speed = document.querySelector('.speed-value');
 
-        navigator.geolocation.watchPosition((data) => {
+        navigator.geolocation.watchPosition((data) => {       //This method is used to continuously track the user's position. 
+                                                              // It provides updates whenever the device detects a change in location
         console.log(data);
-        speed.textContent = data.coords.speed;
+        speed.textContent = data.coords.speed;          //Updates the text content of the speed element with the user's current speed. 
+                                                        //The speed is measured in meters per second and is retrieved from data.coords.speed.
         arrow.style.transform = `rotate(${data.coords.heading}deg)`;
         }, (err) => {
         console.error(err);

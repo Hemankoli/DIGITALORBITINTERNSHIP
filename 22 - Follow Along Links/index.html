@@ -27,13 +27,15 @@
 
     
     <script>
+
         const triggers = document.querySelectorAll('a');
         const highlight = document.createElement('span');
         highlight.classList.add('highlight');
         document.body.appendChild(highlight);
 
         function highlightLink() {
-            const linkCoords = this.getBoundingClientRect();
+            const linkCoords = this.getBoundingClientRect();  //Retrieves the size and position of the link relative to the viewport, 
+            //returning an object (linkCoords) with properties like top, left, width, and height.
             console.log(linkCoords);
             // const coords = {
             //     width: linkCoords.width,

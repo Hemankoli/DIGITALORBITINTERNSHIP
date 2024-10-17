@@ -21,15 +21,16 @@
   const video = document.querySelector('.flex');
 
   function handleMove(e) {
-      const y = e.pageY - this.offsetTop;
-      const percent = y / this.offsetHeight;
-      const min = 0.4;
-      const max = 4;
-      const height = Math.round(percent * 100) + '%';
+      const y = e.pageY - this.offsetTop; //e.pageY gives the vertical position of the mouse in relation to the entire page.
+                                          //this.offsetTop gives the vertical offset of the .speed element relative to its parent or the page.
+      const percent = y / this.offsetHeight;  //this.offsetHeight is the height of the .speed element.
+      const min = 0.4;  //min and max playback speeds for the video  0.4× (slower) to 4× (faster).
+      const max = 4;  
+      const height = Math.round(percent * 100) + '%';   // calculates the height of the .speed-bar in percentage
       const playbackRate = percent * (max - min) + min;
-      bar.style.height = height;
-      bar.textContent = playbackRate.toFixed(2) + '×';
-      video.playbackRate = playbackRate;
+      bar.style.height = height;            //dynamically adjusts the height of the .speed-bar
+      bar.textContent = playbackRate.toFixed(2) + '×';   //updates the text inside the .speed-bar to display the current playback rate
+      video.playbackRate = playbackRate; // adjust the actual playback speed of the video.
     }
 
   speed.addEventListener('mousemove', handleMove);

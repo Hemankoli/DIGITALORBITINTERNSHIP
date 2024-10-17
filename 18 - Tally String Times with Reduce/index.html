@@ -187,11 +187,11 @@
     const timeNodes = Array.from(document.querySelectorAll('[data-time]'));
 
     const seconds = timeNodes
-    .map(node => node.dataset.time)
+    .map(node => node.dataset.time)   //// Get the 'data-time' value (MM:SS)  
     .map(timeCode => {
-        const [mins, secs] = timeCode.split(':').map(parseFloat);
-        return (mins * 60) + secs;
-    }).reduce((total, vidSeconds) => total + vidSeconds);
+        const [mins, secs] = timeCode.split(':').map(parseFloat);   // Split 'MM:SS' and convert them to numbers
+        return (mins * 60) + secs;              // Convert minutes into seconds and add the second
+    }).reduce((total, vidSeconds) => total + vidSeconds);      // Sum up all the seconds
 
     let secondsLeft = seconds;
     const hours = Math.floor(secondsLeft / 3600);

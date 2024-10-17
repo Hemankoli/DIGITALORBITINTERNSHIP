@@ -56,12 +56,13 @@
 <script>
 
     const nav = document.querySelector('#main');
-    let topOfNav = nav.offsetTop;
+    let topOfNav = nav.offsetTop;   //nav.offsetTop gets the distance from the top of the page to the top of the navigation bar (nav). 
+                                    //This value is stored in the topOfNav variable.
 
     function fixNav() {
-      if (window.scrollY >= topOfNav) {
-        document.body.style.paddingTop = nav.offsetHeight + 'px';
-        document.body.classList.add('fixed-nav');
+      if (window.scrollY >= topOfNav) {                 //topOfNav:- condition checks if the scroll position has reached or passed 
+        document.body.style.paddingTop = nav.offsetHeight + 'px'; //This adds padding to the top of the body equal to the height of the navigation bar.
+        document.body.classList.add('fixed-nav');    //This adds padding to the top of the body equal to the height of the navigation bar.
       } else {
         document.body.classList.remove('fixed-nav');
         document.body.style.paddingTop = 0;

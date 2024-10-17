@@ -11,21 +11,21 @@
 
         <script>
             
-            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;  //SpeechRecognition API is used,
 
-            const recognition = new SpeechRecognition();
-            recognition.interimResults = true;
-            recognition.lang = 'en-US';
+            const recognition = new SpeechRecognition();      //This object handles the speech recognition process.
+            recognition.interimResults = true;             //as the person is speaking.
+            recognition.lang = 'en-US';  
 
             let p = document.createElement('p');
             const words = document.querySelector('.words');
             words.appendChild(p);
 
             recognition.addEventListener('result', e => {
-            const transcript = Array.from(e.results)
+            const transcript = Array.from(e.results)     //Converts object into an array.
                 .map(result => result[0])
                 .map(result => result.transcript)
-                .join('');
+                .join('');    //Joins all the pieces of the recognized speech together into a single string.
 
                 const poopScript = transcript.replace(/poop|poo|shit|dump/gi, '💩');
                 p.textContent = poopScript;

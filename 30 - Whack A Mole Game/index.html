@@ -34,17 +34,25 @@
 
 <script>
 
-    const holes = document.querySelectorAll('.hole');
-    const scoreBoard = document.querySelector('.score');
-    const moles = document.querySelectorAll('.mole');
-    let lastHole;
-    let timeUp = false;
-    let score = 0;
+    const holes = document.querySelectorAll('.hole');   //holes: Selects all elements with the class hole (the containers for the moles).
+    const scoreBoard = document.querySelector('.score'); //scoreBoard: Selects the element where the score will be displayed (the <span> inside the <h1>).
+    const moles = document.querySelectorAll('.mole'); //moles: Selects all elements with the class mole (the actual mole that pops up).
 
+    let lastHole;   //lastHole: Tracks the last hole that had a mole to prevent the same hole from being chosen consecutively.
+    let timeUp = false;  //timeUp: A flag to stop the game after a certain amount of time (set to true when the game ends).
+    let score = 0;  //score: Keeps track of the player’s score (starts at 0).
+
+
+    // This function generates a random time interval between a minimum (min) and maximum (max) value.
+    //  It's used to decide how long a mole should stay "up" before going down again.
+    
     function randomTime(min, max) {
         return Math.round(Math.random() * (max - min) + min);
-    }
+    } ;  
 
+    // Chooses a random hole from the holes array for the mole to pop up from.
+    // The condition if (hole === lastHole) ensures that the same hole isn’t chosen consecutively.
+    // If it picks the same hole, it recursively calls itself until it finds a different one.
     function randomHole(holes) {
         const idx = Math.floor(Math.random() * holes.length);
         const hole = holes[idx];
@@ -56,29 +64,32 @@
         return hole;
     }
 
+    // This function controls the popping up of moles:
     function peep() {
-        const time = randomTime(200, 1000);
-        const hole = randomHole(holes);
-        hole.classList.add('up');
+        const time = randomTime(200, 1000);  //It calls randomTime(200, 1000) to get a random "up" duration (between 200 and 1000 milliseconds).
+        const hole = randomHole(holes);   //It calls randomHole(holes) to randomly select a hole for the mole.
+        hole.classList.add('up');    //hole.classList.add('up'): Adds the up class to the hole, which (via CSS) makes the mole appear.
         setTimeout(() => {
-        hole.classList.remove('up');
-        if (!timeUp) peep();
+        hole.classList.remove('up');  //After the mole has been "up" for the random time, the mole is hidden (removes the up class).
+        if (!timeUp) peep();     //If the game isn't over yet (!timeUp), the function recursively calls itself to make the next mole pop up.
         }, time);
     }
 
+    // This function starts the game when the "Start!" button is clicked.
     function startGame() {
-        scoreBoard.textContent = 0;
+        scoreBoard.textContent = 0;   //It resets the score to 0 and sets timeUp to false, meaning the game is now active.
         timeUp = false;
         score = 0;
-        peep();
-        setTimeout(() => timeUp = true, 10000)
+        peep();                  //peep() is called to start the mole popping mechanism.
+        setTimeout(() => timeUp = true, 10000)  //ensures that after 10 seconds, timeUp is set to true which stops the moles from continuing to pop up.
     }
 
+    // This function is triggered when the user clicks on a mole.
     function bonk(e) {
-        if(!e.isTrusted) return; // cheater!
-        score++;
-        this.parentNode.classList.remove('up');
-        scoreBoard.textContent = score;
+        if(!e.isTrusted) return; //Prevents fake clicks or cheating.
+        score++;        //Increases
+        this.parentNode.classList.remove('up'); //Removes the up class from the mole’s parent element (hole)and hiding the mole after it's been clicked.
+        scoreBoard.textContent = score;         //Updates the displayed score
     }
 
     moles.forEach(mole => mole.addEventListener('click', bonk));

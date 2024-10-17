@@ -231,8 +231,10 @@
         background.classList.add('open');
 
         const dropdown = this.querySelector('.dropdown');
-        const dropdownCoords = dropdown.getBoundingClientRect();
-        const navCoords = nav.getBoundingClientRect();
+        const dropdownCoords = dropdown.getBoundingClientRect(); //This method gets the size and position of the .dropdown
+        // element relative to the viewport. The returned object contains the top, left, width, and height of the dropdown.
+
+        const navCoords = nav.getBoundingClientRect();    //it is used to calculate the dropdown's position relative to the navigation bar, not just the page.
 
         const coords = {
             height: dropdownCoords.height,
